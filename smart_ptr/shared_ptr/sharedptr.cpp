@@ -25,6 +25,16 @@ int main(int argc, char ** argv)
   // Create with std::make_shared
   std::shared_ptr<Base> b3(std::make_shared<Base>());
   std::cout << "b3 use count " << b3.use_count() << std::endl;
+  {
+    // Create with primitive types
+    // Same as this one
+    //std::shared_ptr<int> c(std::make_shared<int>(12));
+    auto c = std::make_shared<int>(12);
+    // Use like a normal pointer
+    std::cout << *c << std::endl;
+    *c = 100;
+    std::cout << *c << std::endl;
+  }
   // Destroy with re-assignment, b3 goes out of scope
   b3 = b2;
   std::cout << "b0 use count " << b3.use_count() << std::endl;
